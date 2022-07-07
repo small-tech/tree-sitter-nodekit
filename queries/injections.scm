@@ -22,4 +22,7 @@
   (#match? @_lang "(ts|typescript)")
 )
 
+((get_element
+  (raw_text) @javascript))
+
 (comment) @comment

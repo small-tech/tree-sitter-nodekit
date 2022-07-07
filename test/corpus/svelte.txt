@@ -21,6 +21,41 @@ Raw Text Expression
         (end_tag (tag_name)))
 )
 
+================
+NodeKit GET Area
+================
+<get>
+    export default () => {
+        return {
+            name: 'Laura'
+        }
+    }
+</get>
+<script>
+    export let data
+</script>
+<h1>Hello {data.name}!</h1>
+----
+(document
+  (get_element
+    (start_tag (tag_name))
+    (raw_text)
+    (end_tag (tag_name))
+  )
+  (script_element
+    (start_tag (tag_name))
+    (raw_text)
+    (end_tag (tag_name))
+  )
+  (element
+    (start_tag (tag_name))
+    (text)
+    (expression (raw_text_expr))
+    (text)
+    (end_tag (tag_name))
+  )
+)
+
 ==============
 Dynamic Expression Attribute
 ==============

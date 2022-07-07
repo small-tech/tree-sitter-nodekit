@@ -127,27 +127,48 @@ Raw text elements
   </scrip
 </script>
 
+<get>
+  </g
+  </ge
+</get>
+
 <style>
   </ </s </st </sty </styl
 </style>
 
 <script>
 </script>
+
+<get>
+</get>
 ---
 
 (document
   (script_element
     (start_tag (tag_name))
     (raw_text)
-    (end_tag (tag_name)))
+    (end_tag (tag_name))
+  )
+  (get_element
+    (start_tag (tag_name))
+    (raw_text)
+    (end_tag (tag_name))
+  )
   (style_element
     (start_tag (tag_name))
     (raw_text)
-    (end_tag (tag_name)))
+    (end_tag (tag_name))
+  )
   (script_element
     (start_tag (tag_name))
     (raw_text)
-    (end_tag (tag_name)))
+    (end_tag (tag_name))
+  )
+  (get_element
+    (start_tag (tag_name))
+    (raw_text)
+    (end_tag (tag_name))
+  )
 )
 
 ==================================

@@ -2,12 +2,13 @@
 /// <reference types="tree-sitter-cli/dsl" />
 
 module.exports = grammar({
-  name: "svelte",
+  name: "nodekit",
 
   externals: ($) => [
     $._start_tag_name,
     $._script_start_tag_name,
     $._style_start_tag_name,
+    $._get_start_tag_name,
     $._end_tag_name,
     $.erroneous_end_tag_name,
     "/>",
@@ -24,7 +25,7 @@ module.exports = grammar({
   rules: {
     document: ($) => repeat($._node),
 
-    _node: ($) => choice($.script_element, $.style_element, $._statement),
+    _node: ($) => choice($.get_element, $.script_element, $.style_element, $._statement),
 
     _statement: ($) =>
       choice(
@@ -57,7 +58,7 @@ module.exports = grammar({
 
     erroneous_end_tag: ($) => seq("</", $.erroneous_end_tag_name, ">"),
 
-    // -------- script and style element ---------
+    // -------- script, style, and get elements ---------
     script_element: ($) =>
       seq(
         alias($.script_start_tag, $.start_tag),
@@ -83,6 +84,19 @@ module.exports = grammar({
         "<",
         alias($._style_start_tag_name, $.tag_name),
         repeat($.attribute),
+        ">"
+      ),
+
+    get_element: ($) =>
+      seq(
+        alias($.get_start_tag, $.start_tag),
+        optional($.raw_text),
+        $.end_tag
+      ),
+    get_start_tag: ($) =>
+      seq(
+        "<",
+        alias($._get_start_tag_name, $.tag_name),
         ">"
       ),
     // -------------------------------------------

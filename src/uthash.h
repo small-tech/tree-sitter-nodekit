@@ -639,6 +639,7 @@ const struct hashmap_s *get_tag_map(za_Allocator *AA) {
     TAG(FIGURE, "figure");
     TAG(FOOTER, "footer");
     TAG(FORM, "form");
+    TAG(GET, "get");
     TAG(H1, "h1");
     TAG(H2, "h2");
     TAG(H3, "h3");

@@ -1,5 +1,5 @@
 {
-  "name": "svelte",
+  "name": "nodekit",
   "rules": {
     "document": {
       "type": "REPEAT",
@@ -11,6 +11,10 @@
     "_node": {
       "type": "CHOICE",
       "members": [
+        {
+          "type": "SYMBOL",
+          "name": "get_element"
+        },
         {
           "type": "SYMBOL",
           "name": "script_element"
@@ -304,6 +308,58 @@
             "type": "SYMBOL",
             "name": "attribute"
           }
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        }
+      ]
+    },
+    "get_element": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "get_start_tag"
+          },
+          "named": true,
+          "value": "start_tag"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "raw_text"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "end_tag"
+        }
+      ]
+    },
+    "get_start_tag": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_get_start_tag_name"
+          },
+          "named": true,
+          "value": "tag_name"
         },
         {
           "type": "STRING",
@@ -1276,6 +1332,10 @@
     {
       "type": "SYMBOL",
       "name": "_style_start_tag_name"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_get_start_tag_name"
     },
     {
       "type": "SYMBOL",

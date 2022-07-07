@@ -11,6 +11,7 @@ typedef enum TokenType {
   START_TAG_NAME,
   SCRIPT_START_TAG_NAME,
   STYLE_START_TAG_NAME,
+  GET_START_TAG_NAME,
   END_TAG_NAME,
   ERRONEOUS_END_TAG_NAME,
   SELF_CLOSING_TAG_DELIMITER,
@@ -135,7 +136,8 @@ bool scan_raw_text(Scanner *scanner, TSLexer *lexer) {
   Tag *lastTag = (Tag *)vc_vector_back(scanner->tags);
   const ekstring end_delimiter =
       lastTag->type == SCRIPT ? init_string_str(scanner->A, "</script", 8)
-                              : init_string_str(scanner->A, "</style", 7);
+                              : lastTag->type == GET ? init_string_str(scanner->A, "</get", 5)
+                                                      : init_string_str(scanner->A, "</style", 7);
 
   unsigned delimiter_index = 0;
 
@@ -154,6 +156,7 @@ bool scan_raw_text(Scanner *scanner, TSLexer *lexer) {
   }
 
   lexer->result_symbol = RAW_TEXT;
+  
   return true;
 }
 
@@ -210,6 +213,9 @@ bool scan_start_tag_name(Scanner *scanner, TSLexer *lexer) {
     break;
   case STYLE:
     lexer->result_symbol = STYLE_START_TAG_NAME;
+    break;
+  case GET:
+    lexer->result_symbol = GET_START_TAG_NAME;
     break;
   default:
     lexer->result_symbol = START_TAG_NAME;
@@ -401,7 +407,7 @@ bool scan(Scanner *scanner, TSLexer *lexer, const bool *valid_symbols) {
 void deleter(void *tag, za_Allocator *A) {}
 #pragma GCC diagnostic pop
 #pragma clang diagnostic pop
-void *tree_sitter_svelte_external_scanner_create() {
+void *tree_sitter_nodekit_external_scanner_create() {
   za_Allocator *A = za_New();
   Scanner *scanner = (Scanner *)za_Alloc(A, sizeof(Scanner));
   scanner->A = A;
@@ -410,22 +416,22 @@ void *tree_sitter_svelte_external_scanner_create() {
   return scanner;
 }
 
-bool tree_sitter_svelte_external_scanner_scan(void *payload, TSLexer *lexer,
+bool tree_sitter_nodekit_external_scanner_scan(void *payload, TSLexer *lexer,
                                               const bool *valid_symbols) {
   return scan((Scanner *)payload, lexer, valid_symbols);
 }
 
-unsigned tree_sitter_svelte_external_scanner_serialize(void *payload,
+unsigned tree_sitter_nodekit_external_scanner_serialize(void *payload,
                                                        char *buffer) {
   return serialize((Scanner *)payload, buffer);
 }
 
-void tree_sitter_svelte_external_scanner_deserialize(void *payload,
+void tree_sitter_nodekit_external_scanner_deserialize(void *payload,
                                                      const char *buffer,
                                                      unsigned length) {
   deserialize((Scanner *)payload, buffer, length);
 }
 
-void tree_sitter_svelte_external_scanner_destroy(void *payload) {
+void tree_sitter_nodekit_external_scanner_destroy(void *payload) {
   za_Release(((Scanner *)payload)->A);
 }

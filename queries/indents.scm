@@ -5,6 +5,7 @@
   (await_statement)
   (script_element)
   (style_element)
+  (get_element)
 ] @indent
 
 [

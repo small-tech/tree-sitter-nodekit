@@ -133,6 +133,10 @@
           "named": true
         },
         {
+          "type": "get_element",
+          "named": true
+        },
+        {
           "type": "html_expr",
           "named": true
         },
@@ -223,6 +227,10 @@
           "named": true
         },
         {
+          "type": "get_element",
+          "named": true
+        },
+        {
           "type": "html_expr",
           "named": true
         },
@@ -298,6 +306,10 @@
         },
         {
           "type": "expression",
+          "named": true
+        },
+        {
+          "type": "get_element",
           "named": true
         },
         {
@@ -414,6 +426,10 @@
           "named": true
         },
         {
+          "type": "get_element",
+          "named": true
+        },
+        {
           "type": "html_expr",
           "named": true
         },
@@ -474,6 +490,10 @@
         },
         {
           "type": "expression",
+          "named": true
+        },
+        {
+          "type": "get_element",
           "named": true
         },
         {
@@ -549,6 +569,10 @@
         },
         {
           "type": "expression",
+          "named": true
+        },
+        {
+          "type": "get_element",
           "named": true
         },
         {
@@ -657,6 +681,10 @@
           "named": true
         },
         {
+          "type": "get_element",
+          "named": true
+        },
+        {
           "type": "html_expr",
           "named": true
         },
@@ -721,6 +749,10 @@
         },
         {
           "type": "expression",
+          "named": true
+        },
+        {
+          "type": "get_element",
           "named": true
         },
         {
@@ -794,6 +826,29 @@
       "types": [
         {
           "type": "raw_text_expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "get_element",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "end_tag",
+          "named": true
+        },
+        {
+          "type": "raw_text",
+          "named": true
+        },
+        {
+          "type": "start_tag",
           "named": true
         }
       ]
@@ -890,6 +945,10 @@
         },
         {
           "type": "expression",
+          "named": true
+        },
+        {
+          "type": "get_element",
           "named": true
         },
         {
@@ -991,6 +1050,10 @@
         },
         {
           "type": "expression",
+          "named": true
+        },
+        {
+          "type": "get_element",
           "named": true
         },
         {
@@ -1184,6 +1247,10 @@
         },
         {
           "type": "expression",
+          "named": true
+        },
+        {
+          "type": "get_element",
           "named": true
         },
         {

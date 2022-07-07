@@ -1,7 +1,7 @@
 {
-  "name": "tree-sitter-svelte",
+  "name": "tree-sitter-nodekit",
   "version": "0.10.1",
-  "description": "Tree-sitter-grammar for svelte",
+  "description": "Tree-sitter-grammar for NodeKit",
   "main": "bindings/node",
   "scripts": {
     "test": "tree-sitter test",
@@ -19,7 +19,8 @@
   },
   "keywords": [
     "tree-sitter",
-    "tree-sitter-svelte",
+    "tree-sitter-nodekit",
+    "nodekit",
     "svelte",
     "grammar"
   ],
@@ -38,11 +39,13 @@
   },
   "tree-sitter": [
     {
-      "scope": "text.svelte.basic",
+      "scope": "text.nodekit.basic",
       "file-types": [
+        "page",
+        "component",
         "svelte"
       ],
-      "injection-regex": "svelte"
+      "injection-regex": "nodekit"
     }
   ]
 }

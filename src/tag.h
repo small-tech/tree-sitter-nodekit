@@ -79,6 +79,7 @@ typedef enum {
   FIGURE,
   FOOTER,
   FORM,
+  GET,
   H1,
   H2,
   H3,
