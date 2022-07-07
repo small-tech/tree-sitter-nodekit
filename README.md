@@ -1,11 +1,13 @@
-# Tree-sitter-svelte
+# Tree-sitter-nodekit
 
-Tree-sitter grammar for [svelte](https://svelte.dev)
+Tree-sitter grammar for [NodeKit](https://github.com/small-tech/nodekit)
+
+Forked from [tree-sitter-svelte](https://github.com/Himujjal/tree-sitter-svelte/).
 
 # Install
 
 ```
-npm i tree-sitter-svelte tree-sitter
+npm i tree-sitter-nodekit tree-sitter
 ```
 
 Tree-sitter also requires [nodemon](https://nodemon.io/) to run, so also install that if you don’t already have it:
@@ -42,35 +44,47 @@ To use the grammar from javascript:
 
 ```javascript
 const Parser = require("tree-sitter");
-const Svelte = require("tree-sitter-svelte");
+const NodeKit = require("tree-sitter-nodekit");
 
 const parser = new Parser();
-parser.setLanguage(Svelte);
+parser.setLanguage(NodeKit);
 
 const sourceCode = `
-<script context="module">
-    let name = 'world';
+<get>
+  export default () => {
+    return {
+      name: 'Laura'
+    }
+  }
+</get>
+<script>
+  export let data
 </script>
-<h1>Hello {name'<>{}``"\\''""``{}}!</h1>
+<h1>Hello, {data.name}!</h1>
 `;
 
 const tree = parser.parse(sourceCode);
 console.log(tree.rootNode.toString());
 
 // (document
-//    (script_element
-//        (start_tag (tag_name)
-//            (attribute (attribute_name) (quoted_attribute_value (attribute_value))))
-//        (raw_text)
-//        (end_tag (tag_name))
-//    )
-//    (element
-//        (start_tag (tag_name))
-//        (text) (raw_text_expr) (text)
-//        (end_tag (tag_name)
-//    )
-//  )
-//)
+//   (get_element
+//     (start_tag (tag_name))
+//     (raw_text)
+//     (end_tag (tag_name))
+//   )
+//   (script_element
+//     (start_tag (tag_name))
+//     (raw_text)
+//     (end_tag (tag_name))
+//   )
+//   (element
+//     (start_tag (tag_name))
+//     (text)
+//     (expression (raw_text_expr))
+//     (text)
+//     (end_tag (tag_name))
+//   )
+// )
 ```
 
 # Languages supported:
