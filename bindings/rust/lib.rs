@@ -1,6 +1,6 @@
 // -*- coding: utf-8 -*-
 // ------------------------------------------------------------------------------------------------
-// Copyright © 2021, tree-sitter-svelte author - Himujjal.
+// Copyright © 2021, tree-sitter-nodekit author - Himujjal.
 // See the LICENSE file in this repo for license details.
 // ------------------------------------------------------------------------------------------------
 
@@ -34,14 +34,14 @@
 use tree_sitter::Language;
 
 extern "C" {
-    fn tree_sitter_svelte() -> Language;
+    fn tree_sitter_nodekit() -> Language;
 }
 
 /// Returns the tree-sitter [Language][] for this grammar.
 ///
 /// [Language]: https://docs.rs/tree-sitter/*/tree_sitter/struct.Language.html
 pub fn language() -> Language {
-    unsafe { tree_sitter_svelte() }
+    unsafe { tree_sitter_nodekit() }
 }
 
 /// The source of the JavaScript tree-sitter grammar description.
@@ -71,6 +71,6 @@ mod tests {
         let mut parser = tree_sitter::Parser::new();
         parser
             .set_language(super::language())
-            .expect("Error loading Svelte grammar");
+            .expect("Error loading NodeKit grammar");
     }
 }

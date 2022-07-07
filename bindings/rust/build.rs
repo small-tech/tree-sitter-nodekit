@@ -6,5 +6,5 @@ fn main() {
         .include(&dir)
         .file(dir.join("parser.c"))
         .file(dir.join("scanner.c"))
-        .compile("tree-sitter-svelte");
+        .compile("tree-sitter-nodekit");
 }

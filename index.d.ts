@@ -1,4 +1,4 @@
-declare module "tree-sitter-svelte" {
+declare module "tree-sitter-nodekit" {
 export interface Parser {
   parse(
     input: string | Input,
@@ -125,7 +125,6 @@ export interface Tree {
   getEditedRange(other: Tree): Range;
 }
 
-;
 interface NamedNodeBase extends SyntaxNodeBase {
     isNamed: true;
 }

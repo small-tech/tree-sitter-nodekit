@@ -1,13 +1,13 @@
 [package]
-name = "tree-sitter-svelte"
+name = "tree-sitter-nodekit"
 version = "0.10.2"
 authors = ["Himujjal <himu@tuta.io>"]
 readme = "bindings/rust/README.md"
-keywords = ["incremental", "parsing", "svelte"]
+keywords = ["incremental", "parsing", "nodekit", "svelte"]
 categories = ["parsing", "text-editors", "tree_sitter"]
 repository = "https://github.com/Himujjal/tree-sitter-svelte"
 edition = "2018"
-description = "Tree sitter grammar for Svelte"
+description = "Tree sitter grammar for NodeKit"
 license = "MIT"
 
 build = "bindings/rust/build.rs"
