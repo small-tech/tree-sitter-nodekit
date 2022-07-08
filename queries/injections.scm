@@ -1,5 +1,8 @@
 ; injections.scm
 ; --------------
+((get_element
+  (raw_text) @javascript))
+
 ((style_element
   (raw_text) @css))
 
@@ -21,8 +24,5 @@
     (raw_text) @typescript)
   (#match? @_lang "(ts|typescript)")
 )
-
-((get_element
-  (raw_text) @javascript))
 
 (comment) @comment

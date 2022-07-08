@@ -172,6 +172,7 @@ Tag *initTag(za_Allocator *A) {
   t->custom_tag_name = NaS(A);
   return t;
 }
+
 Tag *initTagArgs(za_Allocator *A, TagType type, const ekstring name) {
   Tag *t = (Tag *)za_Alloc(A, sizeof(Tag));
   t->type = type;

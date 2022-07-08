@@ -77,7 +77,7 @@ void deserialize(Scanner *scanner, const char *buffer, unsigned length) {
     vc_vector_resize(scanner->tags, tag_count, initTag(scanner->A));
     for (unsigned j = 0; j < serialized_tag_count; j++) {
       Tag *tag = vc_vector_at(scanner->tags, j);
-      tag->type = (TagType)(buffer[i++]);
+      tag->type = (TagType)(abs(buffer[i++]));
       if (tag->type == CUSTOM) {
         uint16_t name_length = (uint8_t)(buffer[i++]);
         tag->custom_tag_name =
@@ -137,7 +137,7 @@ bool scan_raw_text(Scanner *scanner, TSLexer *lexer) {
   const ekstring end_delimiter =
       lastTag->type == SCRIPT ? init_string_str(scanner->A, "</script", 8)
                               : lastTag->type == GET ? init_string_str(scanner->A, "</get", 5)
-                                                      : init_string_str(scanner->A, "</style", 7);
+                                                     : init_string_str(scanner->A, "</style", 7);
 
   unsigned delimiter_index = 0;
 
@@ -208,14 +208,14 @@ bool scan_start_tag_name(Scanner *scanner, TSLexer *lexer) {
   Tag *tag = for_name(scanner->A, scanner->m, &tag_name);
   vc_vector_push_back(scanner->tags, tag);
   switch (tag->type) {
+  case GET:
+    lexer->result_symbol = GET_START_TAG_NAME;
+    break;
   case SCRIPT:
     lexer->result_symbol = SCRIPT_START_TAG_NAME;
     break;
   case STYLE:
     lexer->result_symbol = STYLE_START_TAG_NAME;
-    break;
-  case GET:
-    lexer->result_symbol = GET_START_TAG_NAME;
     break;
   default:
     lexer->result_symbol = START_TAG_NAME;

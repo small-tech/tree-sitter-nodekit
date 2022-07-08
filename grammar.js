@@ -58,7 +58,20 @@ module.exports = grammar({
 
     erroneous_end_tag: ($) => seq("</", $.erroneous_end_tag_name, ">"),
 
-    // -------- script, style, and get elements ---------
+    // -------- get, script, and style elements ---------
+    get_element: ($) =>
+      seq(
+        alias($.get_start_tag, $.start_tag),
+        optional($.raw_text),
+        $.end_tag
+      ),
+    get_start_tag: ($) =>
+      seq(
+        "<",
+        alias($._get_start_tag_name, $.tag_name),
+        ">"
+      ),
+
     script_element: ($) =>
       seq(
         alias($.script_start_tag, $.start_tag),
@@ -84,19 +97,6 @@ module.exports = grammar({
         "<",
         alias($._style_start_tag_name, $.tag_name),
         repeat($.attribute),
-        ">"
-      ),
-
-    get_element: ($) =>
-      seq(
-        alias($.get_start_tag, $.start_tag),
-        optional($.raw_text),
-        $.end_tag
-      ),
-    get_start_tag: ($) =>
-      seq(
-        "<",
-        alias($._get_start_tag_name, $.tag_name),
         ">"
       ),
     // -------------------------------------------
